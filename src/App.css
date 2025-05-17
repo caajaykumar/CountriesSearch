@@ -34,7 +34,7 @@
   max-width: 1200px;         /* optional: stop the grid stretching too wide */
 }
 
-    .card {
+    .countryCard {
       background: #fff;
       border: 1px solid #ddd;
       border-radius: 10px;
