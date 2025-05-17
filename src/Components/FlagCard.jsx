@@ -62,7 +62,7 @@ useEffect(() => {
   </div>
 
 
-  <div className="grid" id="countryGrid">
+  <div className="countryCard " id="countryGrid">
         {filtered.map((country, idx) => (
           <div key={idx} className="card">
             <img src={country.png} alt={`${country.common} Flag`} />
