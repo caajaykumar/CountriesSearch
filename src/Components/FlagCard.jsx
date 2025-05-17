@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+
 
 
 const FlagCard = () => {
@@ -11,19 +11,41 @@ const FlagCard = () => {
 
 //   const ENDPOINT = "";
 
-useEffect(() => {
-    axios.get("https://countries-search-data-prod-812920491762.asia-south1.run.app/countries")
-      .then(response => {
-        console.log("API response data:", response.data);
-        setCountries(response.data);
-        setLoading(false);
+// useEffect(() => {
+//     axios.get("https://countries-search-data-prod-812920491762.asia-south1.run.app/countries")
+//       .then(response => {
+//         console.log("API response data:", response.data);
+//         setCountries(response.data);
+//         setLoading(false);
         
-      })
-      .catch(err => {
-        setError("Failed to fetch countries");
-        setLoading(false);
-      });
-  }, []);
+//       })
+//       .catch(err => {
+//         setError("Failed to fetch countries");
+//         setLoading(false);
+//       });
+//   }, []);
+
+
+useEffect(() => {
+  fetch("https://countries-search-data-prod-812920491762.asia-south1.run.app/countries")
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log("API response data:", data);
+      setCountries(data);
+      setLoading(false);
+    })
+    .catch(err => {
+      console.error("Fetch error:", err);
+      setError("Failed to fetch countries");
+      setLoading(false);
+    });
+}, []);
+
 
  /* ——— derived list based on search ——— */
   const filtered = countries.filter((c) =>
